@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>绘制大地线</title>
+    <style>
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=88a31a683d6c9ffe9c4ea56b0e8cd52a"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: ['115.525644','37.845372'],
+        zoom: 7
+    });
+    var lineArr = [
+        ['123.154968', '41.683876'],
+        ['108.952095', '34.322838']
+    ];
+    var polyline = new AMap.Polyline({
+        path: lineArr,            // 设置线覆盖物路径
+        strokeColor: '#3366FF',   // 线颜色
+        strokeOpacity: 1,         // 线透明度
+        strokeWeight: 2,          // 线宽
+        strokeStyle: 'solid',     // 线样式
+        strokeDasharray: [10, 5], // 补充线样式
+        geodesic: true            // 绘制大地线
+    });
+    map.add(polyline);
+</script>
+</body>
+</html> 
