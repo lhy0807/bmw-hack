@@ -42,9 +42,9 @@
   <header class="site-header sticky-top py-1">
     <nav class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="/">Index</a>
-      <a class="py-2 d-none d-md-inline-block" href="/car">Car</a>
-      <a class="py-2 d-none d-md-inline-block" href="/train">Train</a>
-      <a class="py-2 d-none d-md-inline-block" href="/truck">Truck</a>
+      <a class="py-2 d-none d-md-inline-block" href="/car" target="_blank">Car</a>
+      <a class="py-2 d-none d-md-inline-block" href="/train" target="_blank">Train</a>
+      <a class="py-2 d-none d-md-inline-block" href="/truck" target="_blank">Truck</a>
     </nav>
   </header>
 
@@ -95,7 +95,7 @@
       <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
         <div class="my-3 p-3">
           <h2 class="display-5">Upcoming Trucks</h2>
-          <p class="lead">There are 7 trucks today.</p>
+          <p class="lead">There are {{ trunks|length }} trucks today.</p>
         </div>
         <div class="shadow-sm mx-auto"
           style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;padding: 1%; background-color: #008ac9;">
@@ -111,62 +111,16 @@
               </tr>
             </thead>
             <tbody>
+              {% for t in trunks %}
               <tr>
-                <th scope="row">TK1</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
+                <th scope="row">{{ t.TrunkID }}</th>
+                <td>{{ t.From }}</td>
+                <td>{{ t.To }}</td>
+                <td>{{ t.Time }}</td>
                 <td>6</td>
                 <td>辽A00000</td>
               </tr>
-              <tr>
-                <th scope="row">TK2</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
-              <tr>
-                <th scope="row">TK3</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
-              <tr>
-                <th scope="row">TK4</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
-              <tr>
-                <th scope="row">TK5</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
-              <tr>
-                <th scope="row">TK6</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
-              <tr>
-                <th scope="row">TK7</th>
-                <td>Tiexi</td>
-                <td>Dadong</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>6</td>
-                <td>辽A00000</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -250,7 +204,7 @@
       data: {
         labels: ['8/5', '8/6', '8/7', '8/8', '8/9', '8/10', '8/11', '8/12', '8/13', '8/14'],
         datasets: [{
-          data: [7, 6, 10, 4, 1, 4, 3, 2, 1, 4],
+          data: ['{{ trunks_10.5 }}', '{{ trunks_10.6 }}', '{{ trunks_10.7 }}', '{{ trunks_10.8 }}', '{{ trunks_10.9 }}', '{{ trunks_10.10 }}', '{{ trunks_10.11 }}', '{{ trunks_10.12 }}', '{{ trunks_10.13 }}', '{{ trunks_10.14 }}'],
           label: "Truck Number",
           borderColor: "#3e95cd",
           fill: false,

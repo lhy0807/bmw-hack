@@ -44,3 +44,18 @@ for _, row in csv.iterrows():
 
 pickle.dump( trains, open( "trains.pkl", "wb" ) )
 print("trains transformed")
+
+trunks = []
+csv = pd.read_csv('../trunks.csv')
+for _, row in csv.iterrows():
+    trunks.append(
+        [
+        row['TrunkID'],
+        row['From'],
+        row['To'],
+        row['Time']
+        ]
+    )
+
+pickle.dump( trunks, open( "trunks.pkl", "wb" ) )
+print("trunks transformed")
