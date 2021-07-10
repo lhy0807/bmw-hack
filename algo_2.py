@@ -35,8 +35,12 @@ ts = []
 car_loading_table = []
 with open('schedule.csv') as csvf:
     reader = csv.reader(csvf, delimiter=',')
+    tmp = True
     uuid = 0
     for row in reader:
+        if tmp:
+            tmp = False
+            continue
         vin, t, code, plant, dda = row
         t = (datetime.datetime.strptime(t, '%Y-%m-%d %H:%M:%S') - btime).total_seconds()
         ts.append(t)
@@ -151,7 +155,7 @@ not_full_wagon_dd = [[], [], []]
 head_wagon_dd = [0, 0, 0]
 departed_wagon_dd_dda = [[], [], []]
 departed_wagon_dd = []
-transit_schedule = list(range(0, total_length, 320))
+transit_schedule = list(range(0, total_length, 240))
 buffer = []
 trunk_tx_dd = []
 trunk_ind = 1
@@ -166,7 +170,7 @@ while True:
         skipped = False
         if len(transit_schedule) != 0:
             if len(buffer)<=6 and i>=transit_schedule[0]:
-                if curr_car.code in ['F52', 'F49', 'F39']:
+                if curr_car.code in ['F52', 'F49', 'F39','G20']:
                     buffer.append(curr_car)
                     skipped = True
                 if len(buffer)==6:

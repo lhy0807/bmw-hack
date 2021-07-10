@@ -53,6 +53,7 @@
       style="background-image:url({% static 'dash/bg.jpg' %});">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 fw-normal">BMW-Brilliance Railroad Dashboard</h1>
+        <h2 class="display-6 fw-normal" style="color: #008ac9;">8/15/2021</h2>
       </div>
     </div>
 
@@ -61,7 +62,7 @@
         style="background-color: #008ac9;">
         <div class="my-3 py-3">
           <h2 class="display-5">Upcoming Trains</h2>
-          <p class="lead">There are 4 trains today.</p>
+          <p class="lead">There are {{ trains|length }} trains today.</p>
         </div>
         <div class="bg-light shadow-sm mx-auto"
           style="width: 80%; height: 300px; border-radius: 21px 21px 0 0; padding: 1%;">
@@ -77,30 +78,16 @@
               </tr>
             </thead>
             <tbody>
+              {% for t in trains %}
               <tr>
-                <th scope="row">TR1</th>
-                <td>15</td>
-                <td>14</td>
-                <td>Xi'An</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>2021/05/20 15:00:00</td>
+                <th scope="row">{{ t.TrainID }}</th>
+                <td>{{ t.TX_Wagon }}</td>
+                <td>{{ t.DD_Wagon }}</td>
+                <td>{{ t.DDA }}</td>
+                <td>{{ t.TX_Time }}</td>
+                <td>{{ t.DD_Time }}</td>
               </tr>
-              <tr>
-                <th scope="row">TR2</th>
-                <td>12</td>
-                <td>17</td>
-                <td>Chengdu</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>2021/05/20 15:00:00</td>
-              </tr>
-              <tr>
-                <th scope="row">TR3</th>
-                <td>19</td>
-                <td>10</td>
-                <td>Zhengzhou</td>
-                <td>2021/05/20 15:00:00</td>
-                <td>2021/05/20 15:00:00</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -234,7 +221,7 @@
           <canvas id="truck-chart" height="100"></canvas>
         </div>
       </div>
-    </div>  
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -249,7 +236,7 @@
       data: {
         labels: ['8/5', '8/6', '8/7', '8/8', '8/9', '8/10', '8/11', '8/12', '8/13', '8/14'],
         datasets: [{
-          data: [7, 4, 1, 4, 10, 2, 3, 4, 1, 6],
+          data: ['{{ trains_10.5 }}', '{{ trains_10.6 }}', '{{ trains_10.7 }}', '{{ trains_10.8 }}', '{{ trains_10.9 }}', '{{ trains_10.10 }}', '{{ trains_10.11 }}', '{{ trains_10.12 }}', '{{ trains_10.13 }}', '{{ trains_10.14 }}'],
           label: "Train Number",
           borderColor: "#3e95cd",
           fill: false

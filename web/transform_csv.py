@@ -17,16 +17,30 @@ for _, row in csv.iterrows():
 pickle.dump( vehicles, open( "vehicles.pkl", "wb" ) )
 print("vehicles transformed")
 
-schedule = []
+
+schedule = {}
 csv = pd.read_csv('../schedule.csv')
 for _, row in csv.iterrows():
-    schedule.append(
-        {
-            row[0]: [
+    schedule[row[0]] = [
                 row[1], row[2], row[3], row[4]
             ]
-        }
-    )
 
 pickle.dump( schedule, open( "schedule.pkl", "wb" ) )
 print("schedule transformed")
+
+trains = []
+csv = pd.read_csv('../trains.csv')
+for _, row in csv.iterrows():
+    trains.append(
+        [
+        row['TrainID'],
+        row['TX_Wagon'],
+        row['DD_Wagon'],
+        row['DDA'],
+        row['TX_Time'],
+        row['DD_Time']
+        ]
+    )
+
+pickle.dump( trains, open( "trains.pkl", "wb" ) )
+print("trains transformed")
